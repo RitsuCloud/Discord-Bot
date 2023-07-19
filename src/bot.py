@@ -14,7 +14,7 @@ INTENTS.members = INTENTS.messages = INTENTS.message_content = INTENTS.dm_messag
 
 bot = commands.Bot(command_prefix="!", intents=INTENTS)
 
-ALL_COMMENDS = ["!help","!commands","!luck"]
+ALL_COMMENDS = ["!help","!commands","!luck", "!roll"]
 luck = ["Good", "AWESOME", "Meh", "Pretty bad", "You should probably stay home"]
 greetings = ["Hi, Hello"]
 
@@ -44,7 +44,16 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.errors.CommandNotFound):       
         await ctx.send("Not a valid command. !commands to see a list of commands!")
 
-
-
+@bot.command(name="roll", help="Roll to see if you can beat the bot :)")
+async def roll_battle(ctx):
+    bot_roll = random.randrange(1, 13)
+    player_roll = random.randrange(1, 13)
+    if bot_roll > player_roll:
+        res = "You lose :) \n"
+    elif bot_roll < player_roll:
+        res = "You win :( \n"
+    else:
+        res ="Is a draw "
+    await ctx.send(res + (f'Your roll: {player_roll} Bot roll: {bot_roll}'))
 
 bot.run(TOKEN)
