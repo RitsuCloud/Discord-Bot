@@ -1,5 +1,6 @@
 import os
 import discord
+import random
 from discord import Intents
 from dotenv import load_dotenv
 
@@ -9,7 +10,6 @@ GUILD= os.getenv('DISCORD_GUILD')
 
 INTENTS = discord.Intents.default()
 INTENTS.members = INTENTS.messages = INTENTS.message_content = INTENTS.dm_messages = True
-INTENTS
 client = discord.Client(intents=INTENTS)
 
 @client.event
@@ -21,11 +21,6 @@ async def on_ready():
         f'{guild.name}(id: {guild.id})'
     )
 
-    # this just displays its own name, since the bot doesn't have enough permission
-    members = '\n - '.join([member.name for member in guild.members])
-    print(f'Guild Members: \n - {members}')
-
-# doesn't quite work
 @client.event
 async def on_member_join(member):
     await member.create_dm()
@@ -35,19 +30,21 @@ async def on_member_join(member):
 
 @client.event
 async def on_message(message):
-    print(message.content)
+    
     if message.author == client.user:
         return
-    
-    cringe = "SENTINENLSSS OMG LOL"
 
-    if message.content == "val!":
-        response = cringe
-        await message.channel.send(response)
+    if message.content == "!help" or message.content == "!commands":
+        res = "List of Commands : \n" 
+        for command in ALL_COMMENDS:
+            res += command + "\n"
+        await message.channel.send(res)
 
-    if message.author.name == "africanneo":
-        await message.channel.send("Your pretty smart guy")
+    if message.content == "!luck":
+        res = "Your luck today is : " + random.choice(luck)
+        await message.channel.send(res)
 
-    print(type(message.author))
+ALL_COMMENDS = ["!help","!commands","!luck"]
+luck = ["Good", "AWESOME", "Meh", "Pretty bad", "You should probably stay home"]
 
 client.run(TOKEN)
