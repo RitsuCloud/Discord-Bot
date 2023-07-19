@@ -14,9 +14,18 @@ INTENTS.members = INTENTS.messages = INTENTS.message_content = INTENTS.dm_messag
 
 bot = commands.Bot(command_prefix="!", intents=INTENTS)
 
+ALL_COMMENDS = ["!help","!commands","!luck"]
+luck = ["Good", "AWESOME", "Meh", "Pretty bad", "You should probably stay home"]
+greetings = ["Hi, Hello"]
+
 @bot.event
 async def on_ready():
     print("Bot is READY!!!")
+
+@bot.listen("on_message")
+async def on_message_listen(message):
+    if "Hi" in message.content:
+        await message.channel.send("Hello :)")
 
 @bot.command(name="commands", help="This prints out the list of avaiable commands")
 async def print_commands(ctx):
@@ -31,11 +40,11 @@ async def luck_today(ctx):
     await ctx.send(res)
 
 @bot.event
-async def on_message(message):
-    if "fuck" in message.content:
-        await message.channel.send("NO CURSING") 
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.CommandNotFound):       
+        await ctx.send("Not a valid command. !commands to see a list of commands!")
 
-ALL_COMMENDS = ["!help","!commands","!luck"]
-luck = ["Good", "AWESOME", "Meh", "Pretty bad", "You should probably stay home"]
+
+
 
 bot.run(TOKEN)
