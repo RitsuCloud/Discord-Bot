@@ -14,10 +14,18 @@ INTENTS.members = INTENTS.messages = INTENTS.message_content = INTENTS.dm_messag
 
 bot = commands.Bot(command_prefix="!", intents=INTENTS)
 
-ALL_COMMENDS = ["!help","!commands","!luck", "!roll"]
-luck = ["Good", "AWESOME", "Meh", "Pretty bad", "You should probably stay home"]
-greetings = ["Hi, Hello"]
-
+ALL_COMMENDS = ["!help","!commands","!luck", "!roll", "!adventure", "!fortune"]
+luck = ["Go buy a lottery ticket","Meh", "Good", "AWESOME", "Yikes", "Pretty bad", "You should probably stay home"]
+fortune = ["Today will be filled with joy and laughter.",
+            "A pleasant surprise awaits you today.",
+            "You might face some challenges, but remember, you're strong enough to overcome them.",
+            "Luck is on your side today. Take a risk!",
+            "It's a day for new beginnings. Embrace change.",
+            "Your creative energy will be at its peak today.",
+            "You'll meet someone special who'll leave a lasting impression.",
+            "A long-desired goal may finally come to fruition today.",
+            "Take some time for self-care and relaxation.",
+            "You might receive unexpected financial gains."]
 @bot.event
 async def on_ready():
     print("Bot is READY!!!")
@@ -55,5 +63,14 @@ async def roll_battle(ctx):
     else:
         res ="Is a draw "
     await ctx.send(res + (f'Your roll: {player_roll} Bot roll: {bot_roll}'))
+
+@bot.command(name="adventure", help="Comming Soon")
+async def start_adventure(ctx):
+    await ctx.send("Adventure game coming soon!")
+
+@bot.command(name="fortune", help="Fortunte cookie type thing")
+async def fortunte(ctx):
+    res = random.choice(fortune)
+    await ctx.send(res)
 
 bot.run(TOKEN)
