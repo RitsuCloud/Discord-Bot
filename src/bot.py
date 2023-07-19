@@ -9,6 +9,7 @@ GUILD= os.getenv('DISCORD_GUILD')
 
 INTENTS = discord.Intents.default()
 INTENTS.members = INTENTS.messages = INTENTS.message_content = INTENTS.dm_messages = True
+INTENTS
 client = discord.Client(intents=INTENTS)
 
 @client.event
@@ -43,9 +44,10 @@ async def on_message(message):
     if message.content == "val!":
         response = cringe
         await message.channel.send(response)
-    
-    if message.content == "!steve":
-        response = cringe
-        await message.channel.send("uh oh stinky")
-        
+
+    if message.author.name == "africanneo":
+        await message.channel.send("Your pretty smart guy")
+
+    print(type(message.author))
+
 client.run(TOKEN)
