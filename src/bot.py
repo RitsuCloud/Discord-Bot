@@ -93,8 +93,8 @@ async def test(ctx):
 
 @bot.command(name="register", help="register to start the GAMBA")
 async def registerPlayer(ctx):
-    if ctx.author.name in user_data:
-        await ctx.send("You have already registered")
+    if ctx.author.name in user_data and user_data[ctx.author.name] != None :
+        await ctx.send(f'{ctx.author.name}have already registered')
     else:
         user_data[ctx.author.name] = 1000
         if ctx.author.name in user_data and user_data[ctx.author.name] == 1000:
@@ -102,11 +102,24 @@ async def registerPlayer(ctx):
 
 @bot.command(name="gamba", help="Enter the amount following the command with a space")
 async def gamba(ctx):
-    if not ctx.author.name in user_data:
+    if not ctx.author.name in user_data or user_data[ctx.author.name] == None:
         await ctx.send("Please do !register command to get started")
     else:
-        amount = ctx.message.content[len("gamba") + 2 :]
-        await ctx.send(f'You tried to gamba {amount}')
+        amount = int(ctx.message.content[len("gamba") + 2 :])
+        if amount > user_data[ctx.author.name]:
+            await ctx.send(f'{ctx.author.name} you dont have enough credits')
+        else:
+            result = random.randrange(1, 11)
+            if result > 7:
+                user_data[ctx.author.name] += amount
+                await ctx.send(f'{ctx.author.name} won!, now you have {user_data[ctx.author.name]} credtis')
+            else:
+                user_data[ctx.author.name] -= amount 
+                if user_data[ctx.author.name] > 0:
+                    await ctx.send(f'{ctx.author.name} lost!, now you have {user_data[ctx.author.name]} credtis')
+                else:
+                    await ctx.send(f'{ctx.author.name} lost! and you a brokie now, now you have {user_data[ctx.author.name]} credtis')
+                    user_data[ctx.author.name] = None
 
 @bot.command(name="check", help="Check how much user has left to gamba")
 async def check_amount(ctx):
@@ -114,6 +127,6 @@ async def check_amount(ctx):
         await ctx.send("Please do !register command to get started")
     else:
         res = f'{user_data[ctx.author.name]}'
-        await ctx.send(f'Amount you have: {res}')
+        await ctx.send(f'Amount {ctx.author.name} have: {res}')
 
 bot.run(TOKEN)
