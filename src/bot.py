@@ -4,6 +4,7 @@ import random
 from discord import Intents
 from dotenv import load_dotenv
 from discord.ext import commands
+import gamba as testfile
 
 counts = 0
 
@@ -33,6 +34,7 @@ fortune = ["Today will be filled with joy and laughter.",
             "You might receive unexpected financial gains."]
 @bot.event
 async def on_ready():
+    testfile.main()
     print("Bot is READY!!!")
 
 @bot.listen("on_message")
