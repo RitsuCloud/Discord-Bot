@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import gamba as testfile
 
-counts = 0
-
 # key: users name, value: money
 user_data = {}
 
@@ -78,19 +76,6 @@ async def start_adventure(ctx):
 @bot.command(name="fortune", help="Fortunte cookie type thing")
 async def fortunte(ctx):
     res = random.choice(fortune)
-    await ctx.send(res)
-
-# this for testing purposes, will be deleted 
-@bot.command(name="count")
-async def count(ctx):
-    global counts 
-    counts += 1
-    res = (f'{counts}')
-    await ctx.send(res)
-
-@bot.command(name="test")
-async def test(ctx):
-    res = f'{ctx.author.name}'
     await ctx.send(res)
 
 @bot.command(name="register", help="register to start the GAMBA")
