@@ -5,6 +5,8 @@ from discord import Intents
 from dotenv import load_dotenv
 from discord.ext import commands
 
+counts = 0
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD= os.getenv('DISCORD_GUILD')
@@ -71,6 +73,13 @@ async def start_adventure(ctx):
 @bot.command(name="fortune", help="Fortunte cookie type thing")
 async def fortunte(ctx):
     res = random.choice(fortune)
+    await ctx.send(res)
+
+@bot.command(name="count")
+async def count(ctx):
+    global counts 
+    counts += 1
+    res = (f'{counts}')
     await ctx.send(res)
 
 bot.run(TOKEN)
