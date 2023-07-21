@@ -29,7 +29,7 @@ def register(name):
         return f'{name} have already registered!'
     else:
         user_data[name] = 1000
-        return f'{name} is now registed! You have 1000 credits'
+        return f'{name} is now registered! You have 1000 credits!'
 
 # check how much credits a play has
 def check(name):
@@ -44,4 +44,7 @@ def notRegister(name):
         return True
     else:
         return False
-    
+
+# for unit testing purposes 
+def clear():
+    user_data = {}
