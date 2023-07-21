@@ -4,7 +4,7 @@ import random
 from discord import Intents
 from dotenv import load_dotenv
 from discord.ext import commands
-import gamba as testfile
+import gamba as gambaGame
 
 # key: users name, value: money
 user_data = {}
@@ -32,7 +32,6 @@ fortune = ["Today will be filled with joy and laughter.",
             "You might receive unexpected financial gains."]
 @bot.event
 async def on_ready():
-    testfile.main()
     print("Bot is READY!!!")
 
 @bot.listen("on_message")
@@ -80,40 +79,18 @@ async def fortunte(ctx):
 
 @bot.command(name="register", help="register to start the GAMBA")
 async def registerPlayer(ctx):
-    if ctx.author.name in user_data and user_data[ctx.author.name] != None :
-        await ctx.send(f'{ctx.author.name}have already registered')
-    else:
-        user_data[ctx.author.name] = 1000
-        if ctx.author.name in user_data and user_data[ctx.author.name] == 1000:
-            await ctx.send(f'{ctx.author.name} is in you have 1000 credits')
+    res = gambaGame.register(ctx.author.name)
+    await ctx.send(res)
 
 @bot.command(name="gamba", help="Enter the amount following the command with a space")
 async def gamba(ctx):
-    if not ctx.author.name in user_data or user_data[ctx.author.name] == None:
-        await ctx.send("Please do !register command to get started")
-    else:
-        amount = int(ctx.message.content[len("gamba") + 2 :])
-        if amount > user_data[ctx.author.name]:
-            await ctx.send(f'{ctx.author.name} you dont have enough credits')
-        else:
-            result = random.randrange(1, 11)
-            if result > 7:
-                user_data[ctx.author.name] += amount
-                await ctx.send(f'{ctx.author.name} won!, now you have {user_data[ctx.author.name]} credtis')
-            else:
-                user_data[ctx.author.name] -= amount 
-                if user_data[ctx.author.name] > 0:
-                    await ctx.send(f'{ctx.author.name} lost!, now you have {user_data[ctx.author.name]} credtis')
-                else:
-                    await ctx.send(f'{ctx.author.name} lost! and you a brokie now, now you have {user_data[ctx.author.name]} credtis')
-                    user_data[ctx.author.name] = None
+    amount = int(ctx.message.content[len("gamba") + 2 :])
+    res = gambaGame.gamba(ctx.author.name, amount)
+    await ctx.send(res)
 
 @bot.command(name="check", help="Check how much user has left to gamba")
 async def check_amount(ctx):
-    if not ctx.author.name in user_data:
-        await ctx.send("Please do !register command to get started")
-    else:
-        res = f'{user_data[ctx.author.name]}'
-        await ctx.send(f'Amount {ctx.author.name} have: {res}')
+    res = gambaGame.check(ctx.author.name)
+    await ctx.send(res)
 
 bot.run(TOKEN)
