@@ -8,20 +8,20 @@ def gamba(name, amount):
         return ("Please do !register command to get started")
     else:
         if amount > user_data[name]:
-           return f'{name} you dont have enough credits'
+           return f'{name} dont have enough credits!'
         else:
             result = random.randrange(1, 11)
             if result > 7:
                 user_data[name] += amount
-                return f'{name} won!, now you have {user_data[name]} credtis'
+                return f'{name} won!, now you have {user_data[name]} credits!'
             else:
                 user_data[name] -= amount 
                 if user_data[name] > 0:
-                    return f'{name} lost!, now you have {user_data[name]} credtis'
+                    return f'{name} lost!, now you have {user_data[name]} credits!'
                 else:
                     temp = user_data[name]
                     user_data[name] = None
-                    return f'{name} lost! and you a brokie now, now you have {temp} credtis'
+                    return f'{name} lost! and you a brokie now, now you have {temp} credits!'
 
 # name of the player to register
 def register(name):
