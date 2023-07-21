@@ -45,6 +45,6 @@ def notRegister(name):
     else:
         return False
 
-# for unit testing purposes 
-def clear():
-    user_data = {}
+# unit testing only
+def clearData():
+    user_data.clear()

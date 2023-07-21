@@ -3,9 +3,7 @@ import unittest
 
 class GambaCase(unittest.TestCase):
     
-    def testRegister(self):
-      gambaGame.clear()
-
+    def test_register(self):
       res = gambaGame.register("Me")
       self.assertEqual(res, "Me is now registered! You have 1000 credits!")
 
@@ -15,7 +13,7 @@ class GambaCase(unittest.TestCase):
       res = gambaGame.register("Me")
       self.assertEqual(res, "Me have already registered!")
 
-    def testCheck(self):
+    def test_check(self):
        res = gambaGame.check("Me")
        self.assertEqual(res, "Me has not been registered!")
 
@@ -25,6 +23,11 @@ class GambaCase(unittest.TestCase):
        gambaGame.register("Me2")
        res = gambaGame.check("Me2")
        self.assertEqual(res, "Me2 has 1000 credits!")
+
+    def test_clearData(self):
+       gambaGame.clearData()
+       res = gambaGame.check("Me2")
+       self.assertEqual(res, "Me2 has not been registered!")
 
 if __name__ == "__main__":
     unittest.main()
