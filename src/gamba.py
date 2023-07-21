@@ -4,7 +4,7 @@ user_data = {}
 
 # main function gamba
 def gamba(name, amount):
-    if not name in user_data or user_data[name] == None:
+    if notRegister(name):
         return ("Please do !register command to get started")
     else:
         if amount > user_data[name]:
@@ -25,7 +25,7 @@ def gamba(name, amount):
 
 # name of the player to register
 def register(name):
-    if notRegister(name):
+    if not notRegister(name):
         return f'{name} have already registered!'
     else:
         user_data[name] = 1000
@@ -40,7 +40,7 @@ def check(name):
 
 # check if the player is registered
 def notRegister(name):
-    if name in user_data and user_data[name] != None :
+    if name in user_data and user_data[name] == None or not name in user_data:
         return True
     else:
         return False
