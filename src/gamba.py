@@ -36,7 +36,7 @@ def check(name):
     if notRegister(name):
         return f'{name} has not been registered!'
     else:
-        return f'{name} has {user_data[name]} credits'
+        return f'{name} has {user_data[name]} credits!'
 
 # check if the player is registered
 def notRegister(name):
