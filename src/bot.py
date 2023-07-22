@@ -9,6 +9,8 @@ import gamba as gambaGame
 # key: users name, value: money
 user_data = {}
 
+magic8 = ["Yes","No", "Not sure", "Sure", "Ask yourself"]
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD= os.getenv('DISCORD_GUILD')
@@ -18,7 +20,6 @@ INTENTS.members = INTENTS.messages = INTENTS.message_content = INTENTS.dm_messag
 
 bot = commands.Bot(command_prefix="!", intents=INTENTS)
 
-ALL_COMMENDS = ["!help","!commands","!luck", "!roll", "!adventure", "!fortune"]
 luck = ["Go buy a lottery ticket","Meh", "Good", "AWESOME", "Yikes", "Pretty bad", "You should probably stay home"]
 fortune = ["Today will be filled with joy and laughter.",
             "A pleasant surprise awaits you today.",
@@ -38,13 +39,6 @@ async def on_ready():
 async def on_message_listen(message):
     if "Hi" in message.content:
         await message.channel.send("Hello :)")
-
-@bot.command(name="commands", help="This prints out the list of avaiable commands")
-async def print_commands(ctx):
-    res = "List of Commands : \n" 
-    for command in ALL_COMMENDS:
-        res += command + "\n"
-    await ctx.send(res)
 
 @bot.command(name="luck", help="This tells you your luck for the day!")
 async def luck_today(ctx):
@@ -84,13 +78,34 @@ async def registerPlayer(ctx):
 
 @bot.command(name="gamba", help="Enter the amount following the command with a space")
 async def gamba(ctx):
-    amount = int(ctx.message.content[len("gamba") + 2 :])
-    res = gambaGame.gamba(ctx.author.name, amount)
-    await ctx.send(res)
+    try:
+        amount = int(ctx.message.content[len("gamba") + 2 :])
+        res = gambaGame.gamba(ctx.author.name, amount)
+        await ctx.send(res)
+    except Exception:
+        await ctx.send("Invalid input, please input an integer")
 
 @bot.command(name="check", help="Check how much user has left to gamba")
 async def check_amount(ctx):
     res = gambaGame.check(ctx.author.name)
+    await ctx.send(res)
+
+@bot.command(name="guess", help="Type the amount and an integer within 1 to 10")
+async def guessNum(ctx):
+    try:
+        amountAndNumS = ctx.message.content[len("guess") + 2 :]
+        amountAndNum = amountAndNumS.split()
+        amount = int(amountAndNum[0])
+        num = int(amountAndNum[1])
+        res = gambaGame.numGussing(ctx.author.name, amount, num)
+        await ctx.send(res)
+    except Exception:
+        await ctx.send("Invalid input, please input integers")
+
+
+@bot.command(name="8ball", help="Ask yes or no question")
+async def magic(ctx):
+    res = "" + random.choice(magic8)
     await ctx.send(res)
 
 bot.run(TOKEN)
