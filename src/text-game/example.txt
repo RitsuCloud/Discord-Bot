@@ -1,0 +1,5 @@
+This is example text file 1
+for testing 2
+and the number at the end of each line 3
+--------------------------------------
+is the line number for it 4

@@ -1,3 +1,4 @@
+from collections import namedtuple
 """
 Each block of the game will be in the form of
 #1 number
@@ -7,10 +8,18 @@ options # with their corresponding number to jump to
 this will probably require a struct and hashmap
 """
 
+Node = namedtuple('Node', ['scene_number', 'description', 'options'])
+
 lines = []
 
 def main():
   text_parsing("")
+  Node1 = Node(scene_number=1, description="scene 1", options=[])
+  Node1.options.append(("1",2))
+  print(Node1.scene_number)
+  print(Node1.description)
+  print(Node1.options)
+
 
 def text_parsing(num):
     file_path = "text-game/example.txt" + num
