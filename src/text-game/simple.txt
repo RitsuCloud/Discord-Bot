@@ -1,0 +1,14 @@
+scene_number: 1
+description: You found your self in the middle of a crossroad, left side is full of trees with no light, right side is a long straight road you can't see the end
+option: left 2
+option: right 3
+-----------------------------------------------------
+scene_number: 2
+description: walking through the trees you heard a loud noise, you felt pain in your chest and you see a gun shot wound, you fell over and watch as blood dripping out the wound and you died
+DEATH
+-----------------------------------------------------
+scene_number: 3
+description: As you walk down the road, you heard car engine sound from behind you, you turned around and saw a chainsaw, and that was the last thing you see.
+DEATH
+------------------------------------------------------
+END
