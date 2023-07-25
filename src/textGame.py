@@ -17,11 +17,9 @@ scene_content = {}
 
 def main():
   fileToLine()
-  Node1 = Node(scene_number=1, description="scene 1", options=[],death=False)
-  Node1.options.append(("1",2))
-  print(Node1.scene_number)
-  print(Node1.description)
-  print(Node1.options)
+  #LineToHash()
+  print(scene_content)
+
 
 #text file parsing into hashmap 
 def fileToLine():
@@ -44,9 +42,10 @@ def LineToHash():
         curLine = lines[i].split(" ")
 
         #if curLine is --- line for seperating scene, we skip it and reset the variables
-        if curLine[0] == "-":
-            # still need to create the node here to add to dic before resetting the variables
-
+        if curLine[0] == "---":
+            # adds the node into the hash
+            scene_content[scene_num] = Node(scene_number=scene_num, description= description, 
+                                            options=option, death=death)
 
             i += 1
             scene_num = "0"
@@ -78,4 +77,4 @@ def startGame():
     return False
 
 if __name__ == "__main__":
-    main()
+    startGame()
