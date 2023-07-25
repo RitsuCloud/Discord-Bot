@@ -5,10 +5,10 @@ option: right 3
 ---
 scene_number: 2
 description: walking through the trees you heard a loud noise, you felt pain in your chest and you see a gun shot wound, you fell over and watch as blood dripping out the wound and you died
-DEATH
+DEATH:
 ---
 scene_number: 3
 description: As you walk down the road, you heard car engine sound from behind you, you turned around and saw a chainsaw, and that was the last thing you see.
-DEATH
+DEATH:
 ---
 END
