@@ -59,7 +59,7 @@ class TextGame:
                     description += curLine[k] + " "
                 
             if curLine[0] == "option:":
-                i += 0
+                option.append(int(curLine[2]))
 
             if curLine[0] == "DEATH:":
                 death_scene = True
