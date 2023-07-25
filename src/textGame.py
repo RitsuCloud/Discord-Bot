@@ -41,10 +41,13 @@ def LineToHash():
     option = []
     death = False
     while lines[i] != "END":
-        curLine = lines[i]
+        curLine = lines[i].split(" ")
 
-        #if curLine is --- line for seperating scene, we skip it
+        #if curLine is --- line for seperating scene, we skip it and reset the variables
         if curLine[0] == "-":
+            # still need to create the node here to add to dic before resetting the variables
+
+
             i += 1
             scene_num = "0"
             description = ""
@@ -53,18 +56,19 @@ def LineToHash():
             continue
         
         #if curLine is the scene_number
-        if curLine[0] == "scene_number":
-          return None
+        if curLine[0] == "scene_number:":
+          scene_num = int(curLine[1])
         
         #if curLine is the description
-        if curLine[0] == "description":
-            return None
+        if curLine[0] == "description:":
+            for i in range(1, len(curLine)):
+                description += curLine[i]
             
-        if curLine[0] == "option":
+        if curLine[0] == "option:":
             return None
 
-        if curLine[0] == "Death":
-            return None
+        if curLine[0] == "Death:":
+            death = True
             
         i += 1
       
