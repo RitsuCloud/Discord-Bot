@@ -9,8 +9,6 @@ import gamba as gambaGame
 # key: users name, value: money
 user_data = {}
 
-magic8 = ["Yes","No", "Not sure", "Sure", "Ask yourself"]
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD= os.getenv('DISCORD_GUILD')
@@ -87,11 +85,5 @@ async def guessNum(ctx):
         await ctx.send(res)
     except Exception:
         await ctx.send("Invalid input, please input integers")
-
-
-@bot.command(name="8ball", help="Ask yes or no question")
-async def magic(ctx):
-    res = "" + random.choice(magic8)
-    await ctx.send(res)
 
 bot.run(TOKEN)
