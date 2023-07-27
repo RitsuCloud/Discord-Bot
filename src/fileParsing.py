@@ -48,7 +48,9 @@ class TextGame:
             if curLine[0] == "description:":
                 for k in range(1, len(curLine)):
                     description += curLine[k] + " "
-                
+
+            # options needs changing, since we can't just display only the description but also 
+            # the options, and how the user pick the options is also another thing to consider
             if curLine[0] == "option:":
                 option.append(int(curLine[2]))
 
