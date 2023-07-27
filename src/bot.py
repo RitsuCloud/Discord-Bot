@@ -1,10 +1,10 @@
 import os
 import discord
-import random
 from discord import Intents
 from dotenv import load_dotenv
 from discord.ext import commands
 import gamba as gambaGame
+import magic8ball as magicBall
 
 # key: users name, value: money
 user_data = {}
@@ -18,8 +18,6 @@ INTENTS.members = INTENTS.messages = INTENTS.message_content = INTENTS.dm_messag
 
 bot = commands.Bot(command_prefix="!", intents=INTENTS)
 
-luck = ["Go buy a lottery ticket","Meh", "Good", "AWESOME", "Yikes", "Pretty bad", "You should probably stay home"]
-
 @bot.event
 async def on_ready():
     print("Bot is READY!!!")
@@ -31,25 +29,16 @@ async def on_message_listen(message):
 
 @bot.command(name="luck", help="This tells you your luck for the day!")
 async def luck_today(ctx):
-    res = "Your luck today is : " + random.choice(luck)
-    await ctx.send(res)
+    await ctx.send(magicBall.luck())
+
+@bot.command(name="magic8ball", help="Magic 8 ball, try asking it a question!")
+async def magic8ball(ctx):
+    await ctx.send(magicBall.magic8())
 
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.errors.CommandNotFound):       
         await ctx.send("Not a valid command. !commands to see a list of commands!")
-
-@bot.command(name="roll", help="Roll to see if you can beat the bot :)")
-async def roll_battle(ctx):
-    bot_roll = random.randrange(1, 13)
-    player_roll = random.randrange(1, 13)
-    if bot_roll > player_roll:
-        res = "You lose :) \n"
-    elif bot_roll < player_roll:
-        res = "You win :( \n"
-    else:
-        res ="Is a draw "
-    await ctx.send(res + (f'Your roll: {player_roll} Bot roll: {bot_roll}'))
 
 @bot.command(name="adventure", help="Comming Soon")
 async def start_adventure(ctx):
