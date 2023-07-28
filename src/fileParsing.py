@@ -21,7 +21,7 @@ class TextGame:
         i = 0
         scene_num = "0"
         description = ""
-        option = []
+        option = {}
         death_scene = False
         
         lines = self.fileToLine()
@@ -52,7 +52,8 @@ class TextGame:
             # options needs changing, since we can't just display only the description but also 
             # the options, and how the user pick the options is also another thing to consider
             if curLine[0] == "option:":
-                option.append(int(curLine[2]))
+                #option be hashmap with key as "dirction" and value as the scene they go to
+                option[curLine[1]] = int(curLine[2])
 
             if curLine[0] == "DEATH:":
                 death_scene = True

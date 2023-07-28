@@ -12,7 +12,10 @@ def parse():
     
 def startGame():
   parse()
-  return scene_content[cur_scene].description
+  res = f'{scene_content[cur_scene].description} \n'
+  print(scene_content)
+  print(scene_content[cur_scene].options)
+  return res
 
 if __name__ == "__main__":
   startGame()
