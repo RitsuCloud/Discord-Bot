@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import gamba as gambaGame
 import magic8ball as magicBall
+import gameHandler as gameHandler
 
 # key: users name, value: money
 user_data = {}
@@ -40,10 +41,6 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.errors.CommandNotFound):       
         await ctx.send("Not a valid command. !commands to see a list of commands!")
 
-@bot.command(name="adventure", help="Comming Soon")
-async def start_adventure(ctx):
-    await ctx.send("Adventure game coming soon!")
-
 @bot.command(name="register", help="register to start the GAMBA")
 async def registerPlayer(ctx):
     res = gambaGame.register(ctx.author.name)
@@ -74,5 +71,10 @@ async def guessNum(ctx):
         await ctx.send(res)
     except Exception:
         await ctx.send("Invalid input, please input integers")
+
+@bot.command(name="adventure", help="Start a text based adventure game")
+async def startAdventure(ctx):
+    res = gameHandler.startGame()
+    await ctx.send(res)
 
 bot.run(TOKEN)
