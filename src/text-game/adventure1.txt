@@ -1,0 +1,26 @@
+scene_number: 1
+description: Standing by the front gate of a castle, with the gate slightly open, with a path at the right of the castle.
+option: gate 2
+option: right 3
+---
+scene_number: 2
+description: Walked through the front gate and into the castle, a long hall way that leads straight down into a big room.
+option: room 4
+---
+scene_number: 3 
+description: Walked to the right side around the castle, you fell into a trap and spike through your chest and you died.
+DEATH:
+---
+scene_number: 4
+description: You walked down the long hall way into the room and found 2 chest, one on the left and one on the right.
+option: left 5
+option: right 6
+---
+scene_number: 5
+description: You opened the left chest and find nothing, disappointed, you walked home.
+DEATH:
+---
+scene_number: 6
+description: You opened the right chest and a monster poped out of it and killed you.
+DEATH:
+---

@@ -7,7 +7,7 @@ class TextGame:
 
     #text file parsing into lines
     def fileToLine(self):
-        file_path = "text-game/simple.txt"
+        file_path = "text-game/adventure1.txt"
 
         with open(file_path, 'r') as file:
             # Step 2: Read the file contents into a variable
@@ -37,7 +37,7 @@ class TextGame:
                                                 options=option, death=death_scene)
                 scene_num = "0"
                 description = ""
-                option = []
+                option = {}
                 death = False
             
             #if curLine is the scene_number
@@ -51,8 +51,10 @@ class TextGame:
 
             # options needs changing, since we can't just display only the description but also 
             # the options, and how the user pick the options is also another thing to consider
+            print(curLine[0])
             if curLine[0] == "option:":
                 #option be hashmap with key as "dirction" and value as the scene they go to
+                print(curLine[1])
                 option[curLine[1]] = int(curLine[2])
 
             if curLine[0] == "DEATH:":
