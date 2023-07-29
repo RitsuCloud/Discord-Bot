@@ -77,4 +77,10 @@ async def startAdventure(ctx):
     res = gameHandler.startGame()
     await ctx.send(res)
 
+@bot.command(name="direction", help="Command to pick the direction")
+async def pickDirection(ctx):
+    direction = ctx.message.content[len("direction") + 2 :]
+    res = gameHandler.optionPick(direction)
+    await ctx.send(res)
+
 bot.run(TOKEN)
