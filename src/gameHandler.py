@@ -13,8 +13,8 @@ def parse():
 def startGame():
   parse()
   res = f'{scene_content[cur_scene].description} \n'
-  print(scene_content)
-  print(scene_content[cur_scene].options)
+  for key in scene_content[cur_scene].options.keys():
+    res += f'{key} \n'
   return res
 
 if __name__ == "__main__":
