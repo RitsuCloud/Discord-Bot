@@ -36,11 +36,11 @@ def optionPick(direction):
     return "Not Valid Input, please only input the direction you wish to continue."
   
   print("called optionPick")
-  cur_scene = scene_content[cur_scene].options[direction]
   res = parseDiscription(cur_scene)
   print(res)
   if scene_content[cur_scene].death:
     gameOver = True
+  cur_scene = scene_content[cur_scene].options[direction]
   return res
 
 def parseDiscription(num):
