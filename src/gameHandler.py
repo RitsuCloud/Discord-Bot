@@ -30,6 +30,7 @@ def optionPick(direction):
   if gameOver:
     print("gamOver")
     return "Game is over/not started, use !adventure to start over!"
+  
   if not direction in scene_content[cur_scene].options:
     print("incorrect direction")
     return "Not Valid Input, please only input the direction you wish to continue."
