@@ -5,9 +5,12 @@ from collections import namedtuple
 class TextGame:
     Node = namedtuple('Node', ['scene_number', 'description', 'options', 'death'])
 
+    def __init__(self, num):
+        self.fileName = "text-game/adventure" + str(num) + ".txt"
+
     #text file parsing into lines
     def fileToLine(self):
-        file_path = "text-game/adventure1.txt"
+        file_path = self.fileName
 
         with open(file_path, 'r') as file:
             # Step 2: Read the file contents into a variable

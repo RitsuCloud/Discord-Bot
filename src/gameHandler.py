@@ -4,20 +4,20 @@ scene_content = {}
 gameOver = True
 cur_scene = 1
 
-def parse():
+def parse(num):
   global scene_content
 
-  obj = TextGame()
+  obj = TextGame(num)
   scenes = obj.lineToHash()
   for num in scenes.keys():
     scene_content[num] = scenes[num]
     
-def startGame():
+def startGame(num):
   global gameOver
   global cur_scene
   gameOver = False
   cur_scene = 1
-  parse()
+  parse(num)
   res = parseDiscription(cur_scene)
   return res
 
@@ -53,7 +53,7 @@ def parseDiscription(num):
   return res
 
 if __name__ == "__main__":
-  startGame()
+  startGame(1)
 
 
 

@@ -1,3 +1,4 @@
 #This keeps track of what features I want to add
-#1 Add adventure options for players, like adventure 1, adventure 2, etc. 
+#1 DONE:----Add adventure options for players, like adventure 1, adventure 2, etc. 
 #2 Add player inventory system, to add more gameplay into the game rather than just walking around
+#3 Back track where player have the option to go backward to where they were, maybe hard code it? or use a stack 
