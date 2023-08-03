@@ -1,0 +1,47 @@
+scene_number: 1
+description: You are a soldier, lost in the forest, you can hear gun shots from your left, not sure if they are allies, 
+description: and there is a straight path in front of you.
+option: left 2
+option: straight 3
+---
+scene_number: 2
+description: You walked towards the gun shots, as you peek out of the bush, a bullet fly pass your ears, you fell over to 
+description: take cover, you hear foot steps walking towards you.
+option: run 4
+option: hide 5
+---
+scene_number: 3
+description: You decided to ignor the gun shot and follow the straight path in front of you, and soon you found yourself 
+description: in front of a cave.
+option: cave 6
+option: back 7
+---
+scene_number: 7
+description: Unsure what is in the cave, you decided to go back and not explore it, as you following the path back, 
+description: you heared shouting in the distances, and before you have time to take cover, enemy soldiers came out of 
+description: their cover and shot you in the chest and you died
+DEATH:
+---
+scene_number: 5
+description: You decided to hide while the foot steps approches, they walked pass you and you realize they are enemy
+description: soliders, scared, you didn't made a single sound nor movement. The soliders looked around and went back
+description: to their post. You let out a sigh of relief, glad you barely escaped death, and you decided to go back and 
+description: not go forward.
+option: back 8
+---
+scene_number: 8
+description: You went back to where you were at the start and found your allies who were the back ups, you reported what
+description: you saw and was send to backline to recover.
+DEATH:
+---
+scene_number: 6
+description: You decide to explore the cave, and you found a hugh bear sleeping, you were careful not to wake it up, but 
+description: of course, you wake it up, angry that it got woken up, the bear charged at you and you fired you rifle in panic,
+description: you shot the bear roughly 5 times before it reached you and drag its claws across your chest, you felt extreme 
+description: pain and both you and the bear fell over. Vision getting blurry as blood flowing out of your chest, you died
+DEATH:
+---
+scene_number: 4
+description: You decided to run, as you run back, you heard shouting and felt pain on your back, as you fell over from the 
+description: pain you realize you were shot multiple times, nothing else you can do you lay there and waited for death to come
+DEATH:

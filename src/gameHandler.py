@@ -4,6 +4,7 @@ scene_content = {}
 gameOver = True
 cur_scene = 1
 
+
 def parse(num):
   global scene_content
 
