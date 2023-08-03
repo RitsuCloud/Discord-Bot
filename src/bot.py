@@ -72,7 +72,7 @@ async def guessNum(ctx):
     except Exception:
         await ctx.send("Invalid input, please input integers")
 
-@bot.command(name="adventure", help="Follow up the command with a number to start that adventure, currently only support 1")
+@bot.command(name="adventure", help="Follow up the command with a number to start that adventure, currently support 1, 2")
 async def startAdventure(ctx):
     num = ctx.message.content[len("adventure") + 2 :]
     res = gameHandler.startGame(num)
