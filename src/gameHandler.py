@@ -44,11 +44,13 @@ def parseDiscription(num):
   global scene_content
 
   res = f'{scene_content[num].description} \n'
+  if scene_content[num].contain:
+    #set the items in this scene to true for inventory
+    for item in scene_content[num].contain:
+      scene_content["inventory"][item] = True
+
   if scene_content[num].options:
     for key in scene_content[num].options.keys():
-      if scene_content["inventory"] and key in scene_content["inventory"]:
-        scene_content["inventory"][key] = True
-      else:
         res += f'Option: {key} \n'
   return res
 
