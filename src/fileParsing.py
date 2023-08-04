@@ -32,6 +32,13 @@ class TextGame:
 
         while i < len(lines) and lines[i] != "END":
             curLine = lines[i].split(" ")
+            
+            if curLine[0] == "inventory:":
+                scene_content["inventory"] = {}
+                for k in range(1, len(curLine)):
+                    scene_content["inventory"][curLine[k]] = False
+                    print(curLine[k])
+                    print(scene_content["inventory"][curLine[k]])
 
             #if curLine is --- line for seperating scene, we skip it and reset the variables
             if curLine[0] == "---":
@@ -54,10 +61,8 @@ class TextGame:
 
             # options needs changing, since we can't just display only the description but also 
             # the options, and how the user pick the options is also another thing to consider
-            print(curLine[0])
             if curLine[0] == "option:":
                 #option be hashmap with key as "dirction" and value as the scene they go to
-                print(curLine[1])
                 option[curLine[1]] = int(curLine[2])
 
             if curLine[0] == "DEATH:":

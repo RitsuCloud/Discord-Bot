@@ -1,0 +1,1 @@
+inventory: FG_key Room1_key Room3_key Treasure_key

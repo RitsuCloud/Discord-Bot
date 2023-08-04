@@ -29,11 +29,9 @@ def optionPick(direction):
   global cur_scene
   
   if gameOver:
-    print("gamOver")
     return "Game is over/not started, use !adventure to start over!"
   
   if not direction in scene_content[cur_scene].options:
-    print("incorrect direction")
     return "Not Valid Input, please only input the direction you wish to continue."
   
   if scene_content[cur_scene].death:
@@ -47,14 +45,15 @@ def parseDiscription(num):
 
   res = f'{scene_content[num].description} \n'
   if scene_content[num].options:
-    print(scene_content[num].options.keys())
     for key in scene_content[num].options.keys():
-      res += f'Option: {key} \n'
-    print(res)
+      if scene_content["inventory"] and key in scene_content["inventory"]:
+        scene_content["inventory"][key] = True
+      else:
+        res += f'Option: {key} \n'
   return res
 
 if __name__ == "__main__":
-  startGame(1)
+  startGame(2)
 
 
 
