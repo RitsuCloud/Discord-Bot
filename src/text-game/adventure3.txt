@@ -1,1 +1,20 @@
 inventory: FG_key Room1_key Room3_key Treasure_key
+scene_number: 1
+description: scene 1, has nothing
+option: left 2
+option: right 3
+---
+scene_number: 2
+description: has key FG_key to move to scene 4
+contain: FG_key
+option: back 1
+---
+scene_number: 3
+description: this leads to scene 4, needs keys
+option: FG_key 4
+option: back 1
+---
+scene_number: 4
+description: the end
+DEATH:
+---

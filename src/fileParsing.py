@@ -31,15 +31,13 @@ class TextGame:
         lines = self.fileToLine()
         scene_content = {}
 
-        while i < len(lines) and lines[i] != "END":
+        while i < len(lines):
             curLine = lines[i].split(" ")
             
             if curLine[0] == "inventory:":
                 scene_content["inventory"] = {}
                 for k in range(1, len(curLine)):
                     scene_content["inventory"][curLine[k]] = False
-                    print(curLine[k])
-                    print(scene_content["inventory"][curLine[k]])
 
             #if curLine is --- line for seperating scene, we skip it and reset the variables
             if curLine[0] == "---":

@@ -45,3 +45,4 @@ scene_number: 4
 description: You decided to run, as you run back, you heard shouting and felt pain on your back, as you fell over from the 
 description: pain you realize you were shot multiple times, nothing else you can do you lay there and waited for death to come
 DEATH:
+---

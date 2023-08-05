@@ -22,7 +22,6 @@ def startGame(num):
   res = parseDiscription(cur_scene)
   return res
 
-#maybe we need some kind of option recieve thing 
 def optionPick(direction):
   global scene_content
   global gameOver
@@ -34,6 +33,10 @@ def optionPick(direction):
   if not direction in scene_content[cur_scene].options:
     return "Not Valid Input, please only input the direction you wish to continue."
   
+  if "inventory" in scene_content and direction in scene_content["inventory"]:
+    if not scene_content["inventory"][direction]:
+      return f'You don\'t have the required item to continue: {direction}'
+
   if scene_content[cur_scene].death:
     gameOver = True
   cur_scene = scene_content[cur_scene].options[direction]
@@ -48,14 +51,11 @@ def parseDiscription(num):
     #set the items in this scene to true for inventory
     for item in scene_content[num].contain:
       scene_content["inventory"][item] = True
-
+  
+  
   if scene_content[num].options:
     for key in scene_content[num].options.keys():
         res += f'Option: {key} \n'
   return res
-
-if __name__ == "__main__":
-  startGame(2)
-
 
 
