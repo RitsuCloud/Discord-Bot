@@ -1,0 +1,25 @@
+Design document for discord bot with mini games: 
+This mini games discord bot can be used by users within the same server as the bot using bot commends, the mini games are very simple ones. 
+1. Gamba: 
+Gamba uses a hash map with user id as the key and money as the value, each time the user registers, it checks if the user is already registered, if the user 
+is registered the game will print a message letting the user know they are already regsitered, if not that user will be added into the hash map with initial 
+amount of 1000 to gamble. 
+Two main function of the game, one is numGuess and gamba, both function takes the users name and how much the users is putting on the line, numGuessing however 
+takes an extra input of integer since the user is trying to guess a number within 1 to 10, if the users guess it right the amount is 19* times, and Gamba only doubles
+the amount the user puts int. 
+The game has checks to make sure the user is registered and has enough to play the game. 
+2. Magic8Ball:
+This game is just as it says, users can ask it a question and it will respond with a random respond from the existing array. Nothing speical about this. 
+3.Text Game
+This is more complicated, it uses a couple of files. First is fileParsing, all text game script have the following format, 
+scene_number: #
+description: ........
+option: ..... scene_number
+----
+The game is broken down into different scenes, with each scene it has the description of the scene, different options with it's corresponding scene number to go
+to, and --- to indicate that this scene is finished. The file is parsed into a hash map where key is the scene number, and the value is the description, options, and items it might contain. 
+Then there is the gameHandler file, this have the function user needs to start the game which is startGame, it takes in a number which represents which advanture the user
+picks, and it will call fileParsing the parse the corresponding text file, this file handles all the game logic. 
+4. bot.py 
+This file is the main file that is needed to let the bot do what the users commends, it handles different commends from the user and calls the correct file for 
+correct and expected behavior. 
